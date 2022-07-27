@@ -96,6 +96,7 @@ $glare_color: linear-gradient(45deg, #ff512f 0%, #f09819 51%, #ff512f 100%);
 .y-button.is-disabled {
   cursor: not-allowed;
   pointer-events: none;
+  border: none;
 }
 .y-button.is-circle {
   padding: 0;
