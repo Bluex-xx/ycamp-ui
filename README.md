@@ -47,10 +47,13 @@ import {
   faEnvelope,
   faStar,
   faEdit,
+  faCheck,
   faTrashAlt,
   faSmile,
   faTimesCircle,
-  faEye
+  faEye,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
 } from '@fortawesome/free-regular-svg-icons'
 
 import { faCheck } from '@fortawesome/free-solid-svg-icons'

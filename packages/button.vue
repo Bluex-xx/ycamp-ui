@@ -11,7 +11,7 @@
     @click="handleClick"
   >
     <div class="mask" v-if="disabled"></div>
-    <fai :icon="icon" v-if="icon" class="icon" />
+    <font-awesome-icon :icon="icon" v-if="icon" class="icon" />
     <span v-if="$slots.default">
       <slot></slot>
     </span>
@@ -53,11 +53,7 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  created() {},
-  mounted() {},
-  computed: {},
-  watched: {}
+  }
 }
 </script>
 <style scoped lang="scss">

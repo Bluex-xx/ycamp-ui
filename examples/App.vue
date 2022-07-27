@@ -36,7 +36,14 @@
       <y-button type="glare" circle>X</y-button>
       <y-button type="zoom" :icon="['far', 'smile']" circle=true></y-button>
     </div>
+    <div class="title">
+        Swiper
+      </div>
+    <div class="swiper">
+        <y-swiper></y-swiper>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -59,5 +66,11 @@ export default {
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
+}
+.swiper
+{
+  margin:10px 0;
+  width: 700px;
+  height: 280px;
 }
 </style>

@@ -1,8 +1,10 @@
 // 整个包的入口
 import Button from './button'
+import Swiper from './swiper.vue'
 
 var components = [
-  Button
+  Button,
+  Swiper
 ]
 
 const install = function(Vue, options) {
@@ -21,6 +23,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
-  Button
+  Button,
+  Swiper
 }
 export default { install }

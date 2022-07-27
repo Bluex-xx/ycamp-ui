@@ -9,7 +9,9 @@ import {
   faTrashAlt,
   faSmile,
   faTimesCircle,
-  faEye
+  faEye,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
 } from '@fortawesome/free-regular-svg-icons'
 
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -31,13 +33,15 @@ library.add(
   faTrashAlt,
   faSmile,
   faTimesCircle,
-  faEye
+  faEye,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
 )
 
 Vue.config.productionTip = false
 
 // 全局注册字体图标组件
-Vue.component('fai', FontAwesomeIcon)
+Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 
 new Vue({
   render: h => h(App)
