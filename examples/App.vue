@@ -1,12 +1,41 @@
 <template>
   <div id="app">
-    <div class="title">
-      Button demo
+    <div>
+      <div class="title">
+        Button
+      </div>
+      <y-button @click="tips">Demo</y-button>
+      <y-button type="neon">Demo</y-button>
+      <y-button type="glare">Demo</y-button>
+      <y-button type="zoom" :icon="['far', 'smile']">Demo</y-button>
     </div>
-    <y-button round="true" @click="tips">demo</y-button>
-    <y-button type="neon" round="true">demo</y-button>
-    <y-button type="glare" round="true">demo</y-button>
-    <y-button type="zoom" disabled :icon="['far', 'smile']">demo</y-button>
+    <div>
+      <div class="title">
+        Round Button
+      </div>
+      <y-button @click="tips" round>Demo</y-button>
+      <y-button type="neon" round>Demo</y-button>
+      <y-button type="glare" round>Demo</y-button>
+      <y-button type="zoom" round :icon="['far', 'smile']">Demo</y-button>
+    </div>
+    <div>
+      <div class="title">
+        Disabled Button
+      </div>
+      <y-button @click="tips" disabled>Demo</y-button>
+      <y-button type="neon" disabled>Demo</y-button>
+      <y-button type="glare" disabled>Demo</y-button>
+      <y-button type="zoom" disabled :icon="['far', 'smile']">Demo</y-button>
+    </div>
+    <div>
+      <div class="title">
+        Circle Button
+      </div>
+      <y-button @click="tips" circle>好</y-button>
+      <y-button type="neon" circle>赞</y-button>
+      <y-button type="glare" circle>X</y-button>
+      <y-button type="zoom" :icon="['far', 'smile']" circle=true></y-button>
+    </div>
   </div>
 </template>
 

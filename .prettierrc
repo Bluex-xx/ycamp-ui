@@ -1,6 +1,5 @@
 {
-  "singleQuote": true,
-  "trailingComma": "all",
+  "singleQuote": false,
   "printWidth": 100,
   "proseWrap": "never",
   "arrowParens": "avoid",
