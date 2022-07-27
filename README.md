@@ -71,4 +71,5 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 | type     | String           | 按钮类型：simple,neon,glare,zoom    |
 | disabled | Boolean          | 是否禁用按钮，默认为 false          |
 | round    | Boolean          | 是否为圆角按钮，默认为 false        |
+| circle    | Boolean          | 是否为圆形按钮，默认为 false        |
 | icon     | Array 或 Boolean | font-awesome 字体数组，默认为 false |
