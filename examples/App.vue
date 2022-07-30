@@ -34,29 +34,42 @@
       <y-button @click="tips" circle>好</y-button>
       <y-button type="neon" circle>赞</y-button>
       <y-button type="glare" circle>X</y-button>
-      <y-button type="zoom" :icon="['far', 'smile']" circle=true></y-button>
+      <y-button type="zoom" :icon="['far', 'smile']" circle="true"></y-button>
     </div>
     <div class="title">
-        Swiper
-      </div>
+      Swiper
+    </div>
     <div class="swiper">
-        <y-swiper></y-swiper>
+      <y-swiper :list="demo"></y-swiper>
+    </div>
+    <div class="title">
+      vague Swiper
+    </div>
+    <div class="swiper">
+      <y-swiper :list="demo" vague width="600" height="100"></y-swiper>
     </div>
   </div>
-
 </template>
 
 <script>
 export default {
   data() {
-    return {}
+    return {
+      demo: [
+        "https://p1.music.126.net/hpeWjudOwRy2-bX-KHCzIQ==/109951167728885463.jpg?imageView&quality=89",
+        "https://p1.music.126.net/Ou0rXNzdmuZVN9TzETaZjw==/109951167728896546.jpg?imageView&quality=89",
+        "https://p1.music.126.net/1JaeZ2zfM_j2I1sOCFg77g==/109951167728843228.jpg?imageView&quality=89",
+        "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
+        "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
+      ]
+    };
   },
   methods: {
     tips() {
-      alert('demo')
+      alert("demo");
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -67,10 +80,9 @@ export default {
   font-weight: 700;
   text-transform: uppercase;
 }
-.swiper
-{
-  margin:10px 0;
-  width: 700px;
+.swiper {
+  margin: 10px 0;
+  width: 900px;
   height: 280px;
 }
 </style>

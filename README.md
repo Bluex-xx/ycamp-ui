@@ -4,7 +4,7 @@
 
 
 
->字节青训营项目，一款 Vue2.x 组件库，项目结构参考 element-ui
+>字节青训营项目，一款 Vue2.x 组件库，项目结构参考 element-ui ，目标简化配置项 ，美化高频组件
 
 
 
@@ -44,19 +44,19 @@ import 'ycamp-ui/dist/ycamp-ui.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
-  faEnvelope,
-  faStar,
-  faEdit,
-  faCheck,
-  faTrashAlt,
   faSmile,
-  faTimesCircle,
-  faEye,
+  faEye，
   faArrowAltCircleLeft,
   faArrowAltCircleRight
 } from '@fortawesome/free-regular-svg-icons'
-
+library.add(
+  faSmile,
+  faEye,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
+)
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 ```
 
 
@@ -67,7 +67,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 ## 组件
 
-### 按钮(Button)
+### 按钮 (Button)
 
 | 属性     | 值               | 描述                                |
 | -------- | ---------------- | ----------------------------------- |
@@ -76,3 +76,16 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 | round    | Boolean          | 是否为圆角按钮，默认为 false        |
 | circle    | Boolean          | 是否为圆形按钮，默认为 false        |
 | icon     | Array 或 Boolean | font-awesome 字体数组，默认为 false |
+
+
+
+### 轮播图 (Swiper)
+
+| 属性      | 值      | 描述                                |
+| --------- | ------- | ----------------------------------- |
+| list      | Array   | 轮播的图片地址                      |
+| height    | Number  | 轮播图高度，最小值为200             |
+| width     | Number  | 轮播图宽度，最小值为500             |
+| vague     | Boolean | 是否开启高斯模糊效果，默认值为false |
+| indicator | Boolean | 是否开启底部指示器,默认值为true     |
+

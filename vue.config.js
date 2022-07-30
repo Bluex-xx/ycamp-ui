@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  lintOnSave: false,
   pages: {
     index: {
       // 修改项目入口文件
