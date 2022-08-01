@@ -1,10 +1,19 @@
 // 整个包的入口
 import Button from './button'
 import Swiper from './swiper.vue'
-
+import Radio from './radio.vue'
+import RadioGroup from './radio-group.vue'
+import Checkbox from './checkbox.vue'
+import CheckboxGroup from './checkbox-group.vue'
+import Input from './input.vue'
 var components = [
   Button,
-  Swiper
+  Swiper,
+  Radio,
+  RadioGroup,
+  Checkbox,
+  CheckboxGroup,
+  Input
 ]
 
 const install = function(Vue, options) {
@@ -24,6 +33,11 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export {
   Button,
-  Swiper
+  Swiper,
+  Radio,
+  RadioGroup,
+  Checkbox,
+  CheckboxGroup,
+  Input
 }
 export default { install }

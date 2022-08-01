@@ -80,7 +80,9 @@ $glare_color: linear-gradient(45deg, #ff512f 0%, #f09819 51%, #ff512f 100%);
   text-decoration: none;
   touch-action: manipulation;
   white-space: nowrap;
+  border: none;
   overflow: hidden;
+  display: inline-block;
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
@@ -164,9 +166,7 @@ $glare_color: linear-gradient(45deg, #ff512f 0%, #f09819 51%, #ff512f 100%);
   background-color: #3e3ee3b8;
   box-shadow: $zoom_shadow;
   color: white;
-  display: inline-block;
   transition: all 250ms;
-  border: 0;
 }
 .y-button--zoom:hover {
   box-shadow: $zoom_hover_shadow;
@@ -174,9 +174,7 @@ $glare_color: linear-gradient(45deg, #ff512f 0%, #f09819 51%, #ff512f 100%);
 }
 .y-button--neon {
   background: $neon_color;
-  border: 0;
   color: #ffffff;
-  display: inline-block;
   outline: transparent;
   padding: $button_padding;
   transition: box-shadow 0.38s cubic-bezier(0.4, 0, 1, 1);
@@ -190,11 +188,8 @@ $glare_color: linear-gradient(45deg, #ff512f 0%, #f09819 51%, #ff512f 100%);
   transition: 0.5s;
   background-size: 200% auto;
   color: white;
-  display: inline-block;
-  border: none;
   box-shadow: 0px 0px 14px -7px #f09819;
   background-image: $glare_color;
-  font-family: $font_options;
 }
 .y-button--glare:hover {
   background-position: right center;
