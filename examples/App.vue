@@ -34,7 +34,7 @@
       <y-button @click="tips" circle>好</y-button>
       <y-button type="neon" circle>赞</y-button>
       <y-button type="glare" circle>X</y-button>
-      <y-button type="zoom" :icon="['far', 'smile']" circle="true"></y-button>
+      <y-button type="zoom" :icon="['far', 'smile']" :circle="true"></y-button>
     </div>
     <div class="title">
       Swiper
@@ -46,7 +46,15 @@
       vague Swiper
     </div>
     <div class="swiper">
-      <y-swiper :list="demo" vague width="600" height="100"></y-swiper>
+      <y-swiper :list="demo" vague :width="600" :height="100"></y-swiper>
+    </div>
+    <div class="input">
+      <YInput @onChange="change" width="300px" :value="value"> </YInput>
+      <YInput width="300px" icon="user" :value="value"> </YInput>
+      <YInput width="300px" rearIcon="window-close" :value="value"> </YInput>
+      <!-- 不带边框 -->
+      <YInput width="300px" :bordered="false" :value="value"> </YInput>
+      <YInput width="300px" :value="value"> </YInput>
     </div>
   </div>
 </template>
@@ -61,13 +69,24 @@ export default {
         "https://p1.music.126.net/1JaeZ2zfM_j2I1sOCFg77g==/109951167728843228.jpg?imageView&quality=89",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
-      ]
+      ],
+      value: ""
     };
   },
   methods: {
     tips() {
       alert("demo");
+    },
+    change(e) {
+      // 修改value
+      this.value = e;
+      console.log(this.value);
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.value = "111";
+    }, 4000);
   }
 };
 </script>
