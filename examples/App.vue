@@ -27,7 +27,7 @@
       <y-button @click="tips" circle>好</y-button>
       <y-button type="neon" circle>赞</y-button>
       <y-button type="glare" circle>X</y-button>
-      <y-button type="zoom" :icon="['far', 'smile']" circle="true"></y-button>
+      <y-button type="zoom" :icon="['far', 'smile']" circle></y-button>
     </div>
     <div class="title">Radio</div>
     <div>
@@ -124,7 +124,7 @@
       vague Swiper
     </div>
     <div class="swiper">
-      <y-swiper :list="demo" vague width="600" height="100"></y-swiper>
+      <y-swiper :list="demo" vague width=600 height=100></y-swiper>
     </div>
   </div>
 </template>
