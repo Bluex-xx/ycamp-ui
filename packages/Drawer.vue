@@ -27,6 +27,14 @@ export default {
     },
     title: {
       type: String
+    },
+    width:{
+      type:String,
+      default:'399px'
+    },
+    height:{
+      type:String,
+      default:'100%'
     }
   },
   data() {
@@ -77,6 +85,8 @@ export default {
     } else {
       this.closed();
     }
+    this.$refs.y_drawer.style.width = this.width;
+    this.$refs.y_drawer.style.height = this.height;
   },
   watch: {
     state() {
@@ -109,7 +119,7 @@ export default {
     width: 100%;
     padding: 7px;
     line-height: 30px;
-    border-bottom: 2px solid #b6b6b6a5;
+    border-bottom: 1px solid #b6b6b6a5;
     font-size: 16px;
     letter-spacing: 1px;
     font-weight: 600;
@@ -134,25 +144,17 @@ export default {
 .y-drawer--content.at-right {
   top: 0;
   right: -500px;
-  width: 500px;
-  height: 100%;
 }
 .y-drawer--content.at-left {
   top: 0;
   left: -500px;
-  width: 500px;
-  height: 100%;
 }
 .y-drawer--content.at-bottom {
   bottom: -500px;
   left: 0;
-  width: 100%;
-  height: 500px;
 }
 .y-drawer--content.at-top {
   top: -500px;
   left: 0;
-  width: 100%;
-  height: 500px;
 }
 </style>

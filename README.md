@@ -149,9 +149,12 @@ Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 | indicator | Boolean | 是否开启底部指示器,默认值为true     |
 
 
+
 ### 抽屉 （drawer）
 
 | 属性      | 值      | 描述                                |
 | --------- | ------- | ----------------------------------- |
 | position      | String   | 抽屉位置,可选值right ,left ,top ,bottom ,默认值right |
+| width    | String  | 抽屉的宽度             |
+| height    | String  | 抽屉的高度             |
 | title    | String  | 是否带标题             |
