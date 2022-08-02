@@ -7,7 +7,6 @@
       <y-button type="glare">Demo</y-button>
       <y-button type="zoom" :icon="['far', 'smile']">Demo</y-button>
     </div>
-    -->
     <div>
       <div class="title">Round Button</div>
       <y-button @click="tips" round>Demo</y-button>
@@ -27,8 +26,9 @@
       <y-button @click="tips" circle>好</y-button>
       <y-button type="neon" circle>赞</y-button>
       <y-button type="glare" circle>X</y-button>
-      <y-button type="zoom" :icon="['far', 'smile']" circle></y-button>
+      <y-button @click="drawer_demo" type="zoom" :icon="['far', 'smile']" circle></y-button>
     </div>
+
     <div class="title">Radio</div>
     <div>
       <y-radio v-model="radio1" label="1" type="radiotype1">开</y-radio>
@@ -75,6 +75,7 @@
         <y-radio label="4" rounded :icon="['fas', 'circle']">选项4</y-radio>
       </y-radio-group>
     </div>
+
     <!-- yyy-checkbox -->
 
     <div class="title">Checkbox</div>
@@ -126,6 +127,17 @@
     <div class="swiper">
       <y-swiper :list="demo" vague width=600 height=100></y-swiper>
     </div>
+    <!-- drawer demo -->
+    <div class="title">drawer</div>
+    <y-button @click="drawer_demo" type="zoom">Open Drawer</y-button>
+    <y-drawer :state="drawer_open_state" @change="drawer_demo" position="right" title="Demo">
+      <div class="drawer_demo">
+        <y-button type="neon" circle>测</y-button>
+        <y-button @click="tips" circle>试</y-button>
+        <y-button circle>试</y-button>
+        <y-button circle>试</y-button>
+      </div>
+    </y-drawer>
   </div>
 </template>
 
@@ -141,24 +153,32 @@ export default {
       checkList1: ["1", "2"],
       checkList2: ["篮球", "乒乓球"],
       username: "",
-       demo: [
+      demo: [
         "https://p1.music.126.net/hpeWjudOwRy2-bX-KHCzIQ==/109951167728885463.jpg?imageView&quality=89",
         "https://p1.music.126.net/Ou0rXNzdmuZVN9TzETaZjw==/109951167728896546.jpg?imageView&quality=89",
         "https://p1.music.126.net/1JaeZ2zfM_j2I1sOCFg77g==/109951167728843228.jpg?imageView&quality=89",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
-      ]
+      ],
+      drawer_open_state: false
     };
   },
   methods: {
     tips() {
       alert("demo");
     },
-  },
+    drawer_demo()
+    {
+      this.drawer_open_state = !this.drawer_open_state
+    }
+  }
 };
 </script>
 
 <style lang="scss">
+#app{
+  margin-bottom: 100px;
+}
 .title {
   color: gray;
   margin: 20px;
@@ -169,11 +189,14 @@ export default {
 .swiper {
   margin: 10px 0;
   width: 900px;
-  height: 280px;
+  height: 220px;
 }
 y-radio {
   font-family: "楷体";
   font-size: 40px;
   font-weight: bold;
+}
+.drawer_demo {
+  margin: 20px 10px;
 }
 </style>

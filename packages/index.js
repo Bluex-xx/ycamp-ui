@@ -6,14 +6,16 @@ import RadioGroup from './radio-group.vue'
 import Checkbox from './checkbox.vue'
 import CheckboxGroup from './checkbox-group.vue'
 import Input from './input.vue'
-var components = [
+import Drawer from './Drawer.vue'
+const components = [
   Button,
   Swiper,
   Radio,
   RadioGroup,
   Checkbox,
   CheckboxGroup,
-  Input
+  Input,
+  Drawer
 ]
 
 const install = function(Vue, options) {
@@ -38,6 +40,7 @@ export {
   RadioGroup,
   Checkbox,
   CheckboxGroup,
-  Input
+  Input,
+  Drawer
 }
 export default { install }

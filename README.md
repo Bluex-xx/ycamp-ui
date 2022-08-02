@@ -148,3 +148,10 @@ Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 | vague     | Boolean | 是否开启高斯模糊效果，默认值为false |
 | indicator | Boolean | 是否开启底部指示器,默认值为true     |
 
+
+### 抽屉 （drawer）
+
+| 属性      | 值      | 描述                                |
+| --------- | ------- | ----------------------------------- |
+| position      | String   | 抽屉位置,可选值right ,left ,top ,bottom ,默认值right |
+| title    | String  | 是否带标题             |
