@@ -59,7 +59,11 @@ export default {
           this.$refs.y_drawer.style.bottom = "-500px";
           break;
       }
-      this.$refs.y_drawer_mask.style.height = "0";
+      // this.$refs.y_drawer_mask.style.width= "0";
+      setTimeout(()=>{
+              this.$refs.y_drawer_mask.style.height= "0";
+      },300)
+
     },
     opened() {
       switch (this.position) {
@@ -76,6 +80,7 @@ export default {
           this.$refs.y_drawer.style.bottom = "0";
           break;
       }
+      // this.$refs.y_drawer_mask.style.width = "100%";
       this.$refs.y_drawer_mask.style.height = "100%";
     }
   },
@@ -101,7 +106,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .y-drawer--mask {
-  background: rgba(0, 0, 0, 0.566);
+  background: rgba(0, 0, 0, 0.338);
+  backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   left: 0;
@@ -112,7 +118,7 @@ export default {
 .y-drawer--content {
   background: #fff;
   position: fixed;
-  transition: 0.3s;
+  transition: all 0.3s ease-in-out;
   z-index: 99999;
   overflow: hidden;
   .y-drawer--title {

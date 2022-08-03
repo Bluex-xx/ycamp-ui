@@ -115,7 +115,7 @@
       <y-input v-model="password" placeholder="默认输入" showPassword></y-input>
       <y-input v-model="username" placeholder="默认输入" clearable></y-input>
     </div>
-        <div class="title">
+    <div class="title">
       Swiper
     </div>
     <div class="swiper">
@@ -125,17 +125,21 @@
       vague Swiper
     </div>
     <div class="swiper">
-      <y-swiper :list="demo" vague width=600 height=100></y-swiper>
+      <y-swiper :list="demo" vague width="600" height="100"></y-swiper>
     </div>
     <!-- drawer demo -->
     <div class="title">drawer</div>
     <y-button @click="drawer_demo" type="zoom">Open Drawer</y-button>
     <y-drawer :state="drawer_open_state" @change="drawer_demo" position="right" title="Demo">
       <div class="drawer_demo">
-        <y-button type="neon" circle>测</y-button>
-        <y-button @click="tips" circle>试</y-button>
-        <y-button circle>试</y-button>
-        <y-button circle>试</y-button>
+        <div class="title">Input</div>
+        <div>
+          <y-input v-model="username" placeholder="默认输入"></y-input>
+          <y-input v-model="username" placeholder="默认输入" disabled></y-input>
+          <y-input v-model="password" placeholder="默认输入" showPassword></y-input>
+          <y-input v-model="username" placeholder="默认输入" clearable></y-input>
+        </div>
+        <y-button type="neon">Post</y-button>
       </div>
     </y-drawer>
   </div>
@@ -167,16 +171,15 @@ export default {
     tips() {
       alert("demo");
     },
-    drawer_demo()
-    {
-      this.drawer_open_state = !this.drawer_open_state
+    drawer_demo() {
+      this.drawer_open_state = !this.drawer_open_state;
     }
   }
 };
 </script>
 
 <style lang="scss">
-#app{
+#app {
   margin-bottom: 100px;
 }
 .title {
