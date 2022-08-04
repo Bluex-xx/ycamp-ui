@@ -7,7 +7,7 @@
       <y-button type="glare">Demo</y-button>
       <y-button type="zoom" :icon="['far', 'smile']">Demo</y-button>
     </div>
-    -->
+    
     <div>
       <div class="title">Round Button</div>
       <y-button @click="tips" round>Demo</y-button>
@@ -114,7 +114,7 @@
       <y-input v-model="password" placeholder="默认输入" showPassword></y-input>
       <y-input v-model="username" placeholder="默认输入" clearable></y-input>
     </div>
-        <div class="title">
+    <div class="title">
       Swiper
     </div>
     <div class="swiper">
@@ -126,7 +126,129 @@
     <div class="swiper">
       <y-swiper :list="demo" vague width=600 height=100></y-swiper>
     </div>
+    
+    <!--alert-->
+    <div class="title">
+      Alert
+    </div>
+
+    <div class="alert">
+      <y-alert
+        @confirm="confirmAlert"
+        ref="myAlert"
+        type="simple"
+      >
+        <template v-slot:header>
+          This is a title for ALERT
+        </template>
+        <template v-slot:content>
+          This is content for ALERT
+        </template>
+        <template v-slot:btnText>
+          Confirm
+        </template>
+      </y-alert>
+      <y-button 
+        type="simple"
+        @click="openAlert"
+      > OPEN ALERT</y-button>
+    </div>
+
+    <div class="alert">
+      <y-alert
+        @confirm="confirmAlert"
+        ref="myAlert2"
+        type="neon"
+      >
+        <template v-slot:header>
+          This is a title for ALERT
+        </template>
+        <template v-slot:content>
+          This is content for ALERT
+        </template>
+        <template v-slot:btnText>
+          Confirm
+        </template>
+      </y-alert>
+      <y-button 
+        type="neon"
+        @click="openAlert2"
+      > OPEN ALERT</y-button>
+    </div>
+
+    <div class="alert">
+      <y-alert
+        @confirm="confirmAlert"
+        ref="myAlert3"
+        type="glare"
+      >
+        <template v-slot:header>
+          This is a title for ALERT
+        </template>
+        <template v-slot:content>
+          This is content for ALERT
+        </template>
+        <template v-slot:btnText>
+          Confirm
+        </template>
+      </y-alert>
+      <y-button 
+        type="glare"
+        @click="openAlert3"
+      > OPEN ALERT</y-button>
+    </div>
+    
+    <div class="alert">
+      <y-alert
+        @confirm="confirmAlert"
+        ref="myAlert4"
+        type="zoom"
+      >
+        <template v-slot:header>
+          This is a title for ALERT
+        </template>
+        <template v-slot:content>
+          This is content for ALERT
+        </template>
+        <template v-slot:btnText>
+          Confirm
+        </template>
+      </y-alert>
+      <y-button 
+        type="zoom"
+        @click="openAlert4"
+      > OPEN ALERT</y-button>
+    </div>
+
+
+    <!--dialog-->
+    <div class="title">
+      dialog
+    </div>
+    <div class="dialog">
+      <y-button type="zoom" @click="visible = true">Show Dialog</y-button>
+      <y-dialog width="50%" margin-top="10px" :visible="visible" @close="close">
+        <div>这是一段提示信息</div>
+        <template v-slot:footer>
+          <y-button type="zoom" @click="visible = false">确定</y-button>
+          <y-button @click="visible = false">取消</y-button>
+        </template>
+      </y-dialog>
+    </div>
+
+    <div class="dialog">
+      <y-button type="glare" @click="visible = true">Show Dialog</y-button>
+      <y-dialog width="50%" margin-top="10px" :visible="visible" @close="close">
+        <ul>
+          <li>相关文字</li>
+          <li>相关文字</li>
+          <li>相关文字</li>
+        </ul>
+      </y-dialog>
+    </div>
   </div>
+
+  
 </template>
 
 <script>
@@ -147,13 +269,29 @@ export default {
         "https://p1.music.126.net/1JaeZ2zfM_j2I1sOCFg77g==/109951167728843228.jpg?imageView&quality=89",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
-      ]
+      ],
+      visible:false
     };
   },
   methods: {
     tips() {
       alert("demo");
     },
+    openAlert(){
+      this.$refs.myAlert.operateAlert(true)
+    },
+    openAlert2(){
+      this.$refs.myAlert2.operateAlert(true)
+    },
+    openAlert3(){
+      this.$refs.myAlert3.operateAlert(true)
+    },
+    openAlert4(){
+      this.$refs.myAlert4.operateAlert(true)
+    },
+    close(value){
+      this.visible = value
+    }
   },
 };
 </script>
@@ -176,4 +314,8 @@ y-radio {
   font-size: 40px;
   font-weight: bold;
 }
+.alert,.dialog{
+  margin: 10px;
+}
+
 </style>
