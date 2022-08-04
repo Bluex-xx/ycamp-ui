@@ -125,21 +125,23 @@
       vague Swiper
     </div>
     <div class="swiper">
-      <y-swiper :list="demo" vague width="600" height="100"></y-swiper>
+      <y-swiper :list="demo" vague :width="600" :height="100"></y-swiper>
     </div>
     <!-- drawer demo -->
     <div class="title">drawer</div>
     <y-button @click="drawer_demo" type="zoom">Open Drawer</y-button>
     <y-drawer :state="drawer_open_state" @change="drawer_demo" position="right" title="Demo">
       <div class="drawer_demo">
-        <div class="title">Input</div>
-        <div>
-          <y-input v-model="username" placeholder="默认输入"></y-input>
-          <y-input v-model="username" placeholder="默认输入" disabled></y-input>
-          <y-input v-model="password" placeholder="默认输入" showPassword></y-input>
-          <y-input v-model="username" placeholder="默认输入" clearable></y-input>
-        </div>
-        <y-button type="neon">Post</y-button>
+        demo
+      </div>
+      <template v-slot:footer>
+        <y-button type="glare">Post</y-button>
+      </template>
+    </y-drawer>
+    <y-button @click="drawer_demo" type="zoom">Open Drawer with Footer</y-button>
+    <y-drawer :state="drawer_open_state2" @change="drawer_demo2" position="right" title="Demo">
+      <div class="drawer_demo">
+        demo
       </div>
     </y-drawer>
   </div>
@@ -164,7 +166,8 @@ export default {
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
       ],
-      drawer_open_state: false
+      drawer_open_state: false,
+      drawer_open_state2: false
     };
   },
   methods: {
@@ -173,6 +176,9 @@ export default {
     },
     drawer_demo() {
       this.drawer_open_state = !this.drawer_open_state;
+    },
+    drawer_demo2() {
+      this.drawer_open_state2 = !this.drawer_open_state2;
     }
   }
 };

@@ -10,6 +10,9 @@
       <div class="y-drawer--main">
         <slot></slot>
       </div>
+      <div class="y-drawer--footer" v-if="$slots.footer">
+        <slot name="footer"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -28,13 +31,13 @@ export default {
     title: {
       type: String
     },
-    width:{
-      type:String,
-      default:'399px'
+    width: {
+      type: String,
+      default: "399px"
     },
-    height:{
-      type:String,
-      default:'100%'
+    height: {
+      type: String,
+      default: "100%"
     }
   },
   data() {
@@ -59,11 +62,9 @@ export default {
           this.$refs.y_drawer.style.bottom = "-500px";
           break;
       }
-      // this.$refs.y_drawer_mask.style.width= "0";
-      setTimeout(()=>{
-              this.$refs.y_drawer_mask.style.height= "0";
-      },300)
-
+      setTimeout(() => {
+        this.$refs.y_drawer_mask.style.height = "0";
+      }, 300);
     },
     opened() {
       switch (this.position) {
@@ -80,7 +81,8 @@ export default {
           this.$refs.y_drawer.style.bottom = "0";
           break;
       }
-      // this.$refs.y_drawer_mask.style.width = "100%";
+      this.$refs.y_drawer.style.width = this.width;
+      this.$refs.y_drawer.style.height = this.height;
       this.$refs.y_drawer_mask.style.height = "100%";
     }
   },
@@ -90,8 +92,6 @@ export default {
     } else {
       this.closed();
     }
-    this.$refs.y_drawer.style.width = this.width;
-    this.$refs.y_drawer.style.height = this.height;
   },
   watch: {
     state() {
@@ -112,15 +112,16 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 0;
   z-index: 9999;
 }
 .y-drawer--content {
   background: #fff;
   position: fixed;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.33s ease-in-out;
   z-index: 99999;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   .y-drawer--title {
     width: 100%;
     padding: 7px;
@@ -136,6 +137,15 @@ export default {
     margin: 2%;
     color: grey;
     word-wrap: break-word;
+  }
+  .y-drawer--footer {
+    width: 96%;
+    margin: 2%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
   }
   .icon {
     position: absolute;

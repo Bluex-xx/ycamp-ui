@@ -158,3 +158,13 @@ Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 | width    | String  | 抽屉的宽度             |
 | height    | String  | 抽屉的高度             |
 | title    | String  | 是否带标题             |
+
+
+
+###  Drawer Slot 
+
+| name   | 描述             |
+| ------ | ---------------- |
+| -      | drawer的内容     |
+| footer | drawer底部的内容 |
+
