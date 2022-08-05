@@ -27,8 +27,9 @@
       <y-button @click="tips" circle>好</y-button>
       <y-button type="neon" circle>赞</y-button>
       <y-button type="glare" circle>X</y-button>
-      <y-button type="zoom" :icon="['far', 'smile']" circle></y-button>
+      <y-button @click="drawer_demo" type="zoom" :icon="['far', 'smile']" circle></y-button>
     </div>
+
     <div class="title">Radio</div>
     <div>
       <y-radio v-model="radio1" label="1" type="radiotype1">开</y-radio>
@@ -75,6 +76,7 @@
         <y-radio label="4" rounded :icon="['fas', 'circle']">选项4</y-radio>
       </y-radio-group>
     </div>
+
     <!-- yyy-checkbox -->
 
     <div class="title">Checkbox</div>
@@ -124,7 +126,7 @@
       vague Swiper
     </div>
     <div class="swiper">
-      <y-swiper :list="demo" vague width=600 height=100></y-swiper>
+      <y-swiper :list="demo" vague :width="600" :height="100"></y-swiper>
     </div>
     
     <!--alert-->
@@ -246,6 +248,23 @@
         </ul>
       </y-dialog>
     </div>
+    <!-- drawer demo -->
+    <div class="title">drawer</div>
+    <y-button @click="drawer_demo" type="zoom">Open Drawer</y-button>
+    <y-drawer :state="drawer_open_state" @change="drawer_demo" position="right" title="Demo">
+      <div class="drawer_demo">
+        demo
+      </div>
+      <template v-slot:footer>
+        <y-button type="glare">Post</y-button>
+      </template>
+    </y-drawer>
+    <y-button @click="drawer_demo" type="zoom">Open Drawer with Footer</y-button>
+    <y-drawer :state="drawer_open_state2" @change="drawer_demo2" position="right" title="Demo">
+      <div class="drawer_demo">
+        demo
+      </div>
+    </y-drawer>
   </div>
 
   
@@ -263,14 +282,16 @@ export default {
       checkList1: ["1", "2"],
       checkList2: ["篮球", "乒乓球"],
       username: "",
-       demo: [
+      demo: [
         "https://p1.music.126.net/hpeWjudOwRy2-bX-KHCzIQ==/109951167728885463.jpg?imageView&quality=89",
         "https://p1.music.126.net/Ou0rXNzdmuZVN9TzETaZjw==/109951167728896546.jpg?imageView&quality=89",
         "https://p1.music.126.net/1JaeZ2zfM_j2I1sOCFg77g==/109951167728843228.jpg?imageView&quality=89",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
       ],
-      visible:false
+      visible:false,
+      drawer_open_state: false,
+      drawer_open_state2: false
     };
   },
   methods: {
@@ -291,12 +312,21 @@ export default {
     },
     close(value){
       this.visible = value
+    },
+    drawer_demo() {
+      this.drawer_open_state = !this.drawer_open_state;
+    },
+    drawer_demo2() {
+      this.drawer_open_state2 = !this.drawer_open_state2;
     }
-  },
+  }
 };
 </script>
 
 <style lang="scss">
+#app {
+  margin-bottom: 100px;
+}
 .title {
   color: gray;
   margin: 20px;
@@ -307,7 +337,7 @@ export default {
 .swiper {
   margin: 10px 0;
   width: 900px;
-  height: 280px;
+  height: 220px;
 }
 y-radio {
   font-family: "楷体";
@@ -318,4 +348,7 @@ y-radio {
   margin: 10px;
 }
 
+.drawer_demo {
+  margin: 20px 10px;
+}
 </style>

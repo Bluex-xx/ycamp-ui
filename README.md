@@ -148,3 +148,23 @@ Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 | vague     | Boolean | 是否开启高斯模糊效果，默认值为false |
 | indicator | Boolean | 是否开启底部指示器,默认值为true     |
 
+
+
+### 抽屉 （drawer）
+
+| 属性      | 值      | 描述                                |
+| --------- | ------- | ----------------------------------- |
+| position      | String   | 抽屉位置,可选值right ,left ,top ,bottom ,默认值right |
+| width    | String  | 抽屉的宽度             |
+| height    | String  | 抽屉的高度             |
+| title    | String  | 是否带标题             |
+
+
+
+###  Drawer Slot 
+
+| name   | 描述             |
+| ------ | ---------------- |
+| -      | drawer的内容     |
+| footer | drawer底部的内容 |
+
