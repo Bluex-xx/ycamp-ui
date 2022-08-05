@@ -11,10 +11,18 @@ import {
   faTimesCircle,
   faEye,
   faArrowAltCircleLeft,
-  faArrowAltCircleRight
-} from '@fortawesome/free-regular-svg-icons'
+  faArrowAltCircleRight,
+  faEyeSlash,
 
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-regular-svg-icons'
+import { 
+    // fas
+  faCheck ,
+  faCircle,
+  faHeart
+
+
+} from '@fortawesome/free-solid-svg-icons'
 
 import DemoUI from '../packages/index'
 // console.log('YcampUI:', YcampUI)
@@ -26,6 +34,7 @@ import DemoUI from '../packages/index'
 Vue.use(DemoUI)
 
 library.add(
+    // fas
   faEnvelope,
   faStar,
   faEdit,
@@ -35,7 +44,10 @@ library.add(
   faTimesCircle,
   faEye,
   faArrowAltCircleLeft,
-  faArrowAltCircleRight
+  faArrowAltCircleRight,
+  faEyeSlash,
+  faCircle,
+  faHeart
 )
 
 Vue.config.productionTip = false
