@@ -2,7 +2,8 @@
 import Button from "./button";
 import Swiper from "./swiper.vue";
 import Input from "./input.vue";
-var components = [Button, Swiper, Input];
+import DatePicker from "./datePicker.vue";
+var components = [Button, Swiper, Input, DatePicker];
 
 const install = function(Vue, options) {
   if (options && options.components) {

@@ -56,6 +56,9 @@
       <YInput width="300px" :bordered="false" :value="value"> </YInput>
       <YInput width="300px" :value="value"> </YInput>
     </div>
+    <div class="data_picker">
+      <date-picker></date-picker>
+    </div>
   </div>
 </template>
 
@@ -92,6 +95,9 @@ export default {
 </script>
 
 <style lang="scss">
+#app {
+  padding-bottom: 300px;
+}
 .title {
   color: gray;
   margin: 20px;
