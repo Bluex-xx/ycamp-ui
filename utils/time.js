@@ -36,7 +36,8 @@ export function getStartTimeEndTimeInfoFun(startDate, endDate) {
 export function checkStartTimeEndTimeFun(date) {
   if (
     typeof date !== "string" &&
-    typeof date === "string" && !date &&
+    typeof date === "string" &&
+    !date &&
     typeof date !== "number" &&
     !(date instanceof Date)
   ) {
@@ -101,59 +102,4 @@ export function getNewDateFun(date) {
     calendarAddMonth,
     calendarAddDate
   };
-}
-//将数据插入日历
-export function insertDataToCalendar(value, calendarList, dateProp) {
-  if (!value.length || !(value instanceof Array)) {
-    return;
-  }
-  for (let i = 0; i < value.length; i++) {
-    let date = value[i][dateProp];
-    // console.log(date)
-    if (
-      typeof date !== "string" &&
-      typeof date === "string" && !date &&
-      typeof date !== "number" &&
-      !(date instanceof Date)
-    ) {
-      //非时间可能的数据格式，或者明确时间没有值，跳过
-      continue;
-    }
-    if (typeof date === "number" && date.length < 10) {
-      console.error(`日期${date}格式错误,请使用正确的时间戳格式，例如：1593669468000`);
-      continue;
-    }
-    if (typeof date === "string" && date) {
-      //传递过来的时间格式时字符串，此处不可以用parseInt，因为parseInt会将类似2020-02-02解析为2020
-      if (!/-/.test(date) && !/\//.test(date && !Number(date))) {
-        console.error(
-          `日期${date}格式错误,请使用正确的字符串日期格式，例如：2020-06-06，或2020/06/06`
-        );
-        continue;
-      }
-      if (!/-/.test(date) && !/\//.test(date) && Number(date)) {
-        date = Number(date);
-      }
-    }
-    let caldarTimeResult = getNewDateFun(date);
-    if (!caldarTimeResult) return;
-    let { calendarAddYear, calendarAddMonth, calendarAddDate } = caldarTimeResult;
-    value[i] = { ...value[i], calendarAddYear, calendarAddMonth, calendarAddDate };
-  }
-  for (let i = 0; i < calendarList.length; i++) {
-    let filterCalendarList = value.filter(item => item.calendarAddYear === calendarList[i].year); //先筛选出当前年的
-    filterCalendarList = filterCalendarList.filter(
-      item => item.calendarAddMonth === calendarList[i].month
-    ); //再筛选出当前月的
-    filterCalendarList = filterCalendarList.filter(
-      item => item.calendarAddDate === calendarList[i].day
-    ); //最后筛选出当前天的
-    // console.log(filterCalendarList)
-    if (!filterCalendarList.length) {
-      // 没有值，跳过
-      continue;
-    }
-    // 将传过来的数据插入原日历数据
-    calendarList.splice(i, 1, { ...calendarList[i], ...filterCalendarList[0], hasData: true });
-  }
 }

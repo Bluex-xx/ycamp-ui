@@ -1,106 +1,128 @@
 <template>
-  <div
-    class="custom-calendar"
-    :style="{ width: calendarWidth, height: calendarHeight }"
-    :class="calendarClass"
-  >
-    <!-- 顶部标题栏 -->
-    <div class="calendar-topBox">
-      <slot name="calendarTitle"></slot>
-      <slot
-        name="calendarTop"
-        :currentYear="currentYear"
-        :currentMonth="currentMonth + 1"
-        :changeMonth="changeMonth"
-      >
-        <div
-          class="calendar-title rowBtween"
-          :style="{ height: titleHeight, background: titleBk }"
-          :class="titleClass"
+  <div class="container">
+    <div
+      class="custom-calendar"
+      :style="{ width: calendarWidth, height: calendarHeight }"
+      :class="[calendarClass, { show: isShowCalender }]"
+    >
+      <!-- 顶部标题栏 -->
+      <div class="calendar-topBox">
+        <slot name="calendarTitle"></slot>
+        <slot
+          name="calendarTop"
+          :currentYear="currentYear"
+          :currentMonth="currentMonth + 1"
+          :changeMonth="changeMonth"
         >
-          <strong class="left"
-            >{{ currentYear }}{{ titleDateConnector || "年" }}{{ currentMonth + 1
-            }}{{ titleDateConnector ? "" : "月" }}</strong
+          <div
+            class="calendar-title rowBtween"
+            :style="{ height: titleHeight, background: titleBk }"
+            :class="titleClass"
           >
-          <div class="right rowBtween">
-            <span @click="changeMonth(0)">&lt;</span>
-            <span @click="changeMonth(1)">&gt;</span>
+            <strong class="left"
+              >{{ currentYear }}{{ titleDateConnector || "年" }}{{ currentMonth + 1
+              }}{{ titleDateConnector ? "" : "月" }}</strong
+            >
+            <div class="right rowBtween">
+              <span @click="changeMonth(0)">&lt;</span>
+              <span @click="changeMonth(1)">&gt;</span>
+            </div>
           </div>
-        </div>
-      </slot>
-    </div>
-    <!-- 内容区 -->
-    <div class="calendar-body" :style="{ background: bodyBk }" :class="bodyClass">
-      <div class="bodyTitleBox rowCenter">
-        <slot name="weeks">
-          <span
-            class="body-title rowCenter"
-            :ref="index ? '' : 'calenCellTitle'"
-            :style="{ height: cellTitleHeight, color: cellTitleColor }"
-            v-for="(week, index) in weeks"
-            :key="index"
-            >{{ week }}</span
-          >
         </slot>
       </div>
-      <div class="calen-content rowCenter">
-        <div
-          class="calen-cell"
-          :id="'calen' + index"
-          :ref="index ? '' : 'calenCell'"
-          :class="[
-            calenCellClass,
-            index < 7 ? 'firstRowCellClass' : '',
-            index % 7 === 0 ? 'firstColumCellClass' : ''
-          ]"
-          :style="{ ...calenCellStyle, ...cellBorderStyle(index) }"
-          v-for="(day, index) in calendarList"
-          :key="index"
-          @click="choose(day)"
-        >
-          <slot name="day" :day="day">
-            <span class="dateSpan rowCenter" :class="day.dateClass">{{ day.day }}</span>
-          </slot>
-          <slot name="haveDataTag" :hasData="day.hasData" :isThis="day.isThis">
-            <div v-show="day.hasData && day.isThis"></div>
+      <!-- 内容区 -->
+      <div class="calendar-body" :style="{ background: bodyBk }" :class="bodyClass">
+        <div class="bodyTitleBox rowCenter">
+          <slot name="weeks">
+            <span
+              class="body-title rowCenter"
+              :ref="index ? '' : 'calenCellTitle'"
+              :style="{ height: cellTitleHeight, color: cellTitleColor }"
+              v-for="(week, index) in weeks"
+              :key="index"
+              >{{ week }}</span
+            >
           </slot>
         </div>
+        <div class="calen-content rowCenter">
+          <div
+            class="calen-cell"
+            :id="'calen' + index"
+            :ref="index ? '' : 'calenCell'"
+            :class="[
+              calenCellClass,
+              index < 7 ? 'firstRowCellClass' : '',
+              index % 7 === 0 ? 'firstColumCellClass' : ''
+            ]"
+            :style="{ ...calenCellStyle, ...cellBorderStyle(index) }"
+            v-for="(day, index) in calendarList"
+            :key="index"
+            @click="choose(day)"
+          >
+            <slot name="day" :day="day">
+              <span class="dateSpan rowCenter" :class="day.dateClass">{{ day.day }}</span>
+            </slot>
+            <slot name="haveDataTag" :hasData="day.hasData" :isThis="day.isThis">
+              <div v-show="day.hasData && day.isThis"></div>
+            </slot>
+          </div>
+        </div>
       </div>
+    </div>
+    <div
+      :class="[`input_container`, { is_focus: isFocus }]"
+      @mouseover="isShowDelete = true"
+      @mouseleave="isShowDelete = false"
+    >
+      <font-awesome-icon :icon="['far', 'calendar']" class="icon" />
+      <input type="text" placeholder="请选择日期" :value="value" @click="showCalender" />
+      <font-awesome-icon
+        v-if="value && isShowDelete"
+        :icon="['far', 'window-close']"
+        :class="[`icon`, 'delete', { show: isShowDelete }]"
+        @click="clearValue"
+      />
     </div>
   </div>
 </template>
 <script>
-import { isValidDate, isNumber } from "../utils/validate";
-import { getStartTimeEndTimeInfoFun, insertDataToCalendar } from "../utils/time";
+import { isNumber } from "../utils/validate";
+import { getStartTimeEndTimeInfoFun } from "../utils/time";
 export default {
-  name: "DatePicker",
+  name: "YCalendar",
   props: {
     initDate: {
       type: [String, Date, Number],
       default: () => new Date()
-    }, //初始化日期
+    },
+    //初始化日期
     width: {
       type: [String, Number],
-      default: "100%"
-    }, //日历宽度
+      default: "20%"
+    },
+    //日历宽度
     height: {
       type: [String, Number],
       default: "100%"
-    }, //日历高度
+    },
+    //日历高度
     calendarClass: String, //日历自定义样式类
     titleClass: String, //年月标题自定义样式类
     titleH: {
       type: [String, Number],
       default: "35px"
-    }, //年月标题高度
+    },
+    //年月标题高度
     titleBk: {
       type: String,
       default: "#ffffff"
-    }, //年月标题颜色
+    },
+    //年月标题颜色
     bodyBk: {
       type: String,
       default: "#ffffff"
-    }, //日历体背景
+    },
+    //日历体背景
     bodyClass: String, //日历体自定义样式
     dateDefaultClass: String, //日期自定义默认类名
     dateActivDateClass: String, //日期自定义选中类名
@@ -109,15 +131,18 @@ export default {
     insertData: {
       type: Array,
       default: () => []
-    }, //自定义拼接数据
+    },
+    //自定义拼接数据
     weeks: {
       type: Array,
       default: () => ["日", "一", "二", "三", "四", "五", "六"]
-    }, //周数据
+    },
+    //周数据
     dateProp: {
       type: String,
       default: "date"
-    }, //自定义表示时间的字段
+    },
+    //自定义表示时间的字段
     calenCellClass: String, //日历单元格自定义样式
     firstRowCellClass: String, //日历第一行单元格自定义样式
     firstColumCellClass: String, //日历第一列单元格自定义样式
@@ -125,18 +150,28 @@ export default {
     cellTitleHeight: {
       type: [Number, String],
       default: "40px"
-    }, //日历标题高度
+    },
+    //日历标题高度
     cellTitleColor: {
       type: String,
       default: "#333333"
-    }, //日历标题颜色
+    },
+    //日历标题颜色
     range: {
       type: Array,
       default: () => []
-    } //日期范围
+    }, //日期范围
+    dateValue: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {
+      value: "", //选择的日期
+      isShowCalender: false, //是否展示日历
+      isShowDelete: false, //是否展示删除图标
+      isFocus: false, //
       calendarList: [], //日历数据
       activeDay: {}, //选中日期信息
       currentYear: "", //显示的年
@@ -179,13 +214,17 @@ export default {
     this.dateCellDefaultClass = dateDefaultClass || "dateDefaultCss";
     this.dateCellActiClass = dateActivDateClass || "dateActiveCss";
     this.dateCellDisabledClass = dateDisabledDateClass || "disableDateCss";
-    let { dateTime, isValid } = isValidDate(this.initDate);
-    if (!isValid) return;
-    let year = dateTime.getFullYear();
-    let month = dateTime.getMonth();
-    let date = dateTime.getDate();
+    console.log(this.initDate);
+    // let { dateTime, isValid } = isValidDate(this.initDate);
+    // if (!isValid) return;
+    // let year = dateTime.getFullYear();
+    // let month = dateTime.getMonth();
+    // let date = dateTime.getDate();
+    let year = this.initDate.getFullYear();
+    let month = this.initDate.getMonth();
+    let date = this.initDate.getDate();
     await this.init(year, month, date);
-    insertDataToCalendar(this.insertData, this.calendarList, this.dateProp);
+    // insertDataToCalendar(this.insertData, this.calendarList, this.dateProp);
   },
   methods: {
     //初始化日历
@@ -305,7 +344,7 @@ export default {
     },
     //点击选择日期
     choose(day) {
-      console.log(day);
+      // console.log(day);
       let { isRange, isThis } = day;
       if (isThis && isRange) {
         //本月
@@ -317,6 +356,8 @@ export default {
         this.chooseDate = day.year + "-" + month + "-" + myDay;
         this.$emit("getChooseDate", this.chooseDate);
       }
+      // 关闭日历
+      this.closeCalender();
     },
     // 月份改变
     async changeMonth(value) {
@@ -359,46 +400,54 @@ export default {
       }
 
       await this.init(year, month, day, { isChangeMonth: true }); //等待日历先创建完成
-      insertDataToCalendar(this.insertData, this.calendarList, this.dateProp);
+      // insertDataToCalendar(this.insertData, this.calendarList, this.dateProp);
       this.$emit("monthChange");
+    },
+    // 展示日历
+    showCalender() {
+      this.isShowCalender = true;
+      this.isFocus = true;
+    },
+    // 失去焦点,关闭日历
+    closeCalender() {
+      this.isShowCalender = false;
+      this.isFocus = false;
+    },
+    // 清除选择的日期
+    clearValue() {
+      this.$emit("getChooseDate", "");
     }
   },
+  // watch: {
+  //   //监听插入数据
+  //   insertData: {
+  //     deep: true,
+  //     handler: function(value) {
+  //       console.log(value);
+  //       insertDataToCalendar(value, this.calendarList, this.dateProp);
+  //     }
+  //   },
+  //   //监听日期范围变化
+  //   range: {
+  //     deep: true,
+  //     handler: async function([startTime, endTime]) {
+  //       if (startTime && endTime) {
+  //         await this.init(this.currentYear, this.currentMonth, 1); //等待日历先创建完成
+  //         insertDataToCalendar(this.insertData, this.calendarList, this.dateProp);
+  //       }
+  //     }
+  //   }
+  // }
   watch: {
-    //监听插入数据
-    insertData: {
-      deep: true,
-      handler: function(value) {
-        console.log(value);
-        insertDataToCalendar(value, this.calendarList, this.dateProp);
-      }
-    },
-    //监听日期范围变化
-    range: {
-      deep: true,
-      handler: async function([startTime, endTime]) {
-        if (startTime && endTime) {
-          await this.init(this.currentYear, this.currentMonth, 1); //等待日历先创建完成
-          insertDataToCalendar(this.insertData, this.calendarList, this.dateProp);
-        }
+    dateValue: {
+      handler: function(newVal) {
+        this.value = newVal;
       }
     }
   }
 };
 </script>
 <style lang="scss" scoped>
-html,
-body,
-ul,
-li,
-p,
-span,
-div {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 .dateDefaultCss {
   color: black;
   cursor: pointer;
@@ -411,6 +460,51 @@ div {
 .disableDateCss {
   color: #bfbfbf;
   cursor: default;
+}
+.container {
+  position: relative;
+  .custom-calendar {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    display: none;
+    transition: all 2s;
+  }
+  .show {
+    display: block;
+    top: 30px;
+  }
+  .input_container {
+    position: relative;
+    display: inline-flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dcdfe6;
+    padding: 1px 15px;
+    box-sizing: border-box;
+    &.is_focus {
+      border: 1px solid #409eff;
+    }
+    .icon {
+      color: #dcdfe6;
+      margin-right: 5px;
+    }
+    .delete {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+    }
+    input {
+      border: none;
+      outline: none;
+      line-height: 100%;
+      color: #303133;
+    }
+  }
 }
 .custom-calendar {
   .calendar-title {
@@ -469,9 +563,6 @@ div {
     }
   }
 }
-/*
-flex布局样式
- */
 /* flex布局 */
 .rowStart {
   display: flex;

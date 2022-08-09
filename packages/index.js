@@ -1,9 +1,8 @@
 // 整个包的入口
 import Button from "./button";
 import Swiper from "./swiper.vue";
-import Input from "./input.vue";
-import DatePicker from "./datePicker.vue";
-var components = [Button, Swiper, Input, DatePicker];
+import Calendar from "./calendar.vue";
+var components = [Button, Swiper, Calendar];
 
 const install = function(Vue, options) {
   if (options && options.components) {
@@ -20,5 +19,5 @@ if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
-export { Button, Swiper };
+export { Button, Swiper, Calendar };
 export default { install };

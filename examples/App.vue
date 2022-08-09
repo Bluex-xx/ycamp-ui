@@ -56,8 +56,19 @@
       <YInput width="300px" :bordered="false" :value="value"> </YInput>
       <YInput width="300px" :value="value"> </YInput>
     </div>
-    <div class="data_picker">
-      <date-picker></date-picker>
+    <div class="Calendar">
+      <y-calendar @getChooseDate="getChooseDate" :dateValue="date">
+        <!-- 自定义日历title -->
+        <template #calendarTitle> </template>
+        <!-- 自定义渲染丽日头部 -->
+        <template #calendarTop> </template>
+        <!-- 自定义渲染日期 -->
+        <template #day> </template>
+        <!-- 之定义当前周显示 -->
+        <template #weeks> </template>
+        <!-- 自定义日期底部标注 -->
+        <template #haveDataTag> </template>
+      </y-calendar>
     </div>
   </div>
 </template>
@@ -73,7 +84,8 @@ export default {
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
       ],
-      value: ""
+      value: "",
+      date: "" //选择的日期
     };
   },
   methods: {
@@ -83,7 +95,9 @@ export default {
     change(e) {
       // 修改value
       this.value = e;
-      console.log(this.value);
+    },
+    getChooseDate(date) {
+      this.date = date;
     }
   },
   mounted() {
@@ -109,5 +123,8 @@ export default {
   margin: 10px 0;
   width: 900px;
   height: 280px;
+}
+.Calendar {
+  margin-top: 20px;
 }
 </style>

@@ -13,7 +13,8 @@ import {
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
   faUser,
-  faWindowClose
+  faWindowClose,
+  faCalendar
 } from "@fortawesome/free-regular-svg-icons";
 
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -39,7 +40,8 @@ library.add(
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
   faUser,
-  faWindowClose
+  faWindowClose,
+  faCalendar
 );
 
 Vue.config.productionTip = false;
