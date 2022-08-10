@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Vue from "vue";
+import App from "./App.vue";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faEnvelope,
   faStar,
@@ -19,19 +19,21 @@ import {
     // fas
   faCheck ,
   faCircle,
-  faHeart
-
-
+  faHeart,
+  faUser,
+  faWindowClose,
+  faCalendar
 } from '@fortawesome/free-solid-svg-icons'
 
-import DemoUI from '../packages/index'
+
+import DemoUI from "../packages/index";
 // console.log('YcampUI:', YcampUI)
 
 // 按需导入
 // import Button from '../packages/button.vue'
 // Vue.use(YcampUI, { components: [Button] })
 
-Vue.use(DemoUI)
+Vue.use(DemoUI);
 
 library.add(
     // fas
@@ -47,14 +49,17 @@ library.add(
   faArrowAltCircleRight,
   faEyeSlash,
   faCircle,
-  faHeart
-)
+  faHeart,
+  faUser,
+  faWindowClose,
+  faCalendar
+);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // 全局注册字体图标组件
-Vue.component('FontAwesomeIcon', FontAwesomeIcon)
+Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 
 new Vue({
   render: h => h(App)
-}).$mount('#app')
+}).$mount("#app");

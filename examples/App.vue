@@ -115,6 +115,7 @@
       <y-input v-model="username" placeholder="默认输入" disabled></y-input>
       <y-input v-model="password" placeholder="默认输入" showPassword></y-input>
       <y-input v-model="username" placeholder="默认输入" clearable></y-input>
+      <y-button type="zoom" :icon="['far', 'smile']" :circle="true"></y-button>
     </div>
     <div class="title">
       Swiper
@@ -128,6 +129,15 @@
     <div class="swiper">
       <y-swiper :list="demo" vague :width="600" :height="100"></y-swiper>
     </div>
+    <div class="input">
+      <YInput @onChange="change" width="300px" :value="value"> </YInput>
+      <YInput width="300px" icon="user" :value="value"> </YInput>
+      <YInput width="300px" rearIcon="window-close" :value="value"> </YInput>
+      <!-- 不带边框 -->
+      <YInput width="300px" :bordered="false" :value="value"> </YInput>
+      <YInput width="300px" :value="value"> </YInput>
+    </div>
+ 
     
     <!--alert-->
     <div class="title">
@@ -250,7 +260,7 @@
     </div>
     <!-- drawer demo -->
     <div class="title">drawer</div>
-    <y-button @click="drawer_demo" type="zoom">Open Drawer</y-button>
+    <y-button @click="drawer_demo2" type="zoom">Open Drawer</y-button>
     <y-drawer :state="drawer_open_state" @change="drawer_demo" position="right" title="Demo">
       <div class="drawer_demo">
         demo
@@ -265,6 +275,20 @@
         demo
       </div>
     </y-drawer>
+       <div class="Calendar">
+      <y-calendar @getChooseDate="getChooseDate" :dateValue="date">
+        <!-- 自定义日历title -->
+        <template #calendarTitle> </template>
+        <!-- 自定义渲染丽日头部 -->
+        <template #calendarTop> </template>
+        <!-- 自定义渲染日期 -->
+        <template #day> </template>
+        <!-- 之定义当前周显示 -->
+        <template #weeks> </template>
+        <!-- 自定义日期底部标注 -->
+        <template #haveDataTag> </template>
+      </y-calendar>
+    </div>
   </div>
 
   
@@ -291,7 +315,9 @@ export default {
       ],
       visible:false,
       drawer_open_state: false,
-      drawer_open_state2: false
+      drawer_open_state2: false,
+      value: "",
+      date: "" //选择的日期
     };
   },
   methods: {
@@ -318,7 +344,19 @@ export default {
     },
     drawer_demo2() {
       this.drawer_open_state2 = !this.drawer_open_state2;
+    },
+    change(e) {
+      // 修改value
+      this.value = e;
+    },
+    getChooseDate(date) {
+      this.date = date;
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.value = "111";
+    }, 4000);
   }
 };
 </script>
@@ -326,6 +364,7 @@ export default {
 <style lang="scss">
 #app {
   margin-bottom: 100px;
+  padding-bottom: 300px;
 }
 .title {
   color: gray;
@@ -350,5 +389,8 @@ y-radio {
 
 .drawer_demo {
   margin: 20px 10px;
+}
+.Calendar {
+  margin-top: 20px;
 }
 </style>

@@ -9,6 +9,7 @@ import Input from './input.vue'
 import Alert from './alert.vue'
 import Dialog from './dialog.vue'
 import Drawer from './Drawer.vue'
+import Calendar from "./calendar.vue";
 const components = [
   Button,
   Swiper,
@@ -19,24 +20,24 @@ const components = [
   Input,
   Alert,
   Dialog,
-  Drawer
+  Drawer,
+  Calendar
 ]
 
 const install = function(Vue, options) {
   if (options && options.components) {
-    components = options.components
+    components = options.components;
   }
   components.forEach(item => {
     // 往全局注册组件
-    Vue.component(item.name, item)
-  })
-}
+    Vue.component(item.name, item);
+  });
+};
 
 // script直接引用
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
+if (typeof window !== "undefined" && window.Vue) {
+  install(window.Vue);
 }
-
 export {
   Button,
   Swiper,
@@ -47,6 +48,7 @@ export {
   Input,
   Alert,
   Dialog,
-  Drawer
+  Drawer,
+  Calendar
 }
 export default { install }
