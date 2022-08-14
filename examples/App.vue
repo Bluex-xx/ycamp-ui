@@ -222,25 +222,24 @@
       > OPEN ALERT</y-button>
     </div>
 
-
     <!--dialog-->
     <div class="title">
       dialog
     </div>
     <div class="dialog">
-      <y-button type="zoom" @click="visible = true">Show Dialog</y-button>
-      <y-dialog width="50%" margin-top="10px" :visible="visible" @close="close">
+      <y-button type="zoom" @click="openDialog1">Show Dialog</y-button>
+      <y-dialog ref="mydialog1" width="50%" margin-top="10px" :visible="visible" @close="close">
         <div>这是一段提示信息</div>
         <template v-slot:footer>
-          <y-button type="zoom" @click="visible = false">确定</y-button>
-          <y-button @click="visible = false">取消</y-button>
+          <y-button type="zoom" @click="close">底部插入显示</y-button>
         </template>
       </y-dialog>
     </div>
 
+    
     <div class="dialog">
-      <y-button type="glare" @click="visible = true">Show Dialog</y-button>
-      <y-dialog width="50%" margin-top="10px" :visible="visible" @close="close">
+      <y-button type="glare" @click="openDialog2">Show Dialog</y-button>
+      <y-dialog ref="mydialog2" width="50%" margin-top="10px" :visible="visible" @close="close1">
         <ul>
           <li>相关文字</li>
           <li>相关文字</li>
@@ -248,6 +247,8 @@
         </ul>
       </y-dialog>
     </div>
+    
+
     <!-- drawer demo -->
     <div class="title">drawer</div>
     <y-button @click="drawer_demo" type="zoom">Open Drawer</y-button>
@@ -265,9 +266,20 @@
         demo
       </div>
     </y-drawer>
-  </div>
 
-  
+    <div class="title">
+       MESSAGE
+    </div>
+    <div class="dialog">
+      <y-button  @click="openMessage">Show Message</y-button>
+      <y-message ref="mydmessage1" width="50%" margin-top="10px" :visible="visible" @close="close">
+        <div>这是一段提示信息</div>
+      </y-message>
+    </div>
+
+
+
+  </div>
 </template>
 
 <script>
@@ -310,14 +322,23 @@ export default {
     openAlert4(){
       this.$refs.myAlert4.operateAlert(true)
     },
-    close(value){
-      this.visible = value
+    close(){
+      this.$refs.mydialog1.visible = false
+    },
+    close1(){
+      this.$refs.mydialog2.visible = false
     },
     drawer_demo() {
       this.drawer_open_state = !this.drawer_open_state;
     },
     drawer_demo2() {
       this.drawer_open_state2 = !this.drawer_open_state2;
+    },
+    openDialog1(){
+      this.$refs.mydialog1.visible = true
+    },
+    openDialog2(){
+      this.$refs.mydialog2.visible = true
     }
   }
 };

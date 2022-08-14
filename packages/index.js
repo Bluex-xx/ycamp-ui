@@ -9,6 +9,7 @@ import Input from './input.vue'
 import Alert from './alert.vue'
 import Dialog from './dialog.vue'
 import Drawer from './Drawer.vue'
+import Message from './message.vue'
 const components = [
   Button,
   Swiper,
@@ -19,7 +20,8 @@ const components = [
   Input,
   Alert,
   Dialog,
-  Drawer
+  Drawer,
+  Message
 ]
 
 const install = function(Vue, options) {
