@@ -26,9 +26,7 @@ export default {
   props: {
     list: {
       type: Array,
-      default: [
-        "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
-      ]
+      default: ["https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"]
     },
     vague: {
       type: Boolean,
@@ -38,14 +36,14 @@ export default {
       type: Boolean,
       default: true
     },
-    height:{
+    height: {
       type: Number,
       default: 260
     },
-    width:{
+    width: {
       type: Number,
       default: 700
-    },
+    }
   },
   methods: {
     select_change(index, imgUrl, e) {
@@ -81,8 +79,7 @@ export default {
     },
     change(imgUrl) {
       this.$refs.swiperbg.style.background = `url(${imgUrl})`;
-      if(this.vague)
-      {
+      if (this.vague) {
         this.$refs.swiperimg.style.background = `url(${imgUrl})`;
       }
     }
@@ -94,23 +91,20 @@ export default {
     };
   },
   mounted() {
-    if(this.vague)
-    {
-        this.$refs.swiperimg.style.background = `url(${this.imgList[this.currentIndex]})`;
+    if (this.vague) {
+      this.$refs.swiperimg.style.background = `url(${this.imgList[this.currentIndex]})`;
     }
     this.$refs.swiperbg.style.background = `url(${this.imgList[this.currentIndex]})`;
-    if(this.width<500)
-    {
+    if (this.width < 500) {
       this.width = 500;
     }
-    if(this.height <200)
-    {
+    if (this.height < 200) {
       this.height = 200;
     }
     this.$refs.swiperbg.style.height = this.height + "px";
     this.$refs.swiperbg.style.width = this.width + "px";
-    this.$refs.btn_left.style.top = (this.height - 30)/2 + "px" ;
-    this.$refs.btn_right.style.top = (this.height - 30)/2 + "px" ;
+    this.$refs.btn_left.style.top = (this.height - 30) / 2 + "px";
+    this.$refs.btn_right.style.top = (this.height - 30) / 2 + "px";
     this.$refs.select_btn[this.currentIndex].style.background = "grey";
   }
 };

@@ -115,6 +115,7 @@
       <y-input v-model="username" placeholder="默认输入" disabled></y-input>
       <y-input v-model="password" placeholder="默认输入" showPassword></y-input>
       <y-input v-model="username" placeholder="默认输入" clearable></y-input>
+      <y-button type="zoom" :icon="['far', 'smile']" :circle="true"></y-button>
     </div>
     <div class="title">
       Swiper
@@ -128,106 +129,24 @@
     <div class="swiper">
       <y-swiper :list="demo" vague :width="600" :height="100"></y-swiper>
     </div>
+    <div class="input">
+      <YInput @onChange="change" width="300px" :value="value"> </YInput>
+      <YInput width="300px" icon="user" :value="value"> </YInput>
+      <YInput width="300px" rearIcon="window-close" :value="value"> </YInput>
+      <!-- 不带边框 -->
+      <YInput width="300px" :bordered="false" :value="value"> </YInput>
+      <YInput width="300px" :value="value"> </YInput>
+    </div>
+ 
     
-    <!--alert-->
-    <div class="title">
-      Alert
-    </div>
-
-    <div class="alert">
-      <y-alert
-        @confirm="confirmAlert"
-        ref="myAlert"
-        type="simple"
-      >
-        <template v-slot:header>
-          This is a title for ALERT
-        </template>
-        <template v-slot:content>
-          This is content for ALERT
-        </template>
-        <template v-slot:btnText>
-          Confirm
-        </template>
-      </y-alert>
-      <y-button 
-        type="simple"
-        @click="openAlert"
-      > OPEN ALERT</y-button>
-    </div>
-
-    <div class="alert">
-      <y-alert
-        @confirm="confirmAlert"
-        ref="myAlert2"
-        type="neon"
-      >
-        <template v-slot:header>
-          This is a title for ALERT
-        </template>
-        <template v-slot:content>
-          This is content for ALERT
-        </template>
-        <template v-slot:btnText>
-          Confirm
-        </template>
-      </y-alert>
-      <y-button 
-        type="neon"
-        @click="openAlert2"
-      > OPEN ALERT</y-button>
-    </div>
-
-    <div class="alert">
-      <y-alert
-        @confirm="confirmAlert"
-        ref="myAlert3"
-        type="glare"
-      >
-        <template v-slot:header>
-          This is a title for ALERT
-        </template>
-        <template v-slot:content>
-          This is content for ALERT
-        </template>
-        <template v-slot:btnText>
-          Confirm
-        </template>
-      </y-alert>
-      <y-button 
-        type="glare"
-        @click="openAlert3"
-      > OPEN ALERT</y-button>
-    </div>
     
-    <div class="alert">
-      <y-alert
-        @confirm="confirmAlert"
-        ref="myAlert4"
-        type="zoom"
-      >
-        <template v-slot:header>
-          This is a title for ALERT
-        </template>
-        <template v-slot:content>
-          This is content for ALERT
-        </template>
-        <template v-slot:btnText>
-          Confirm
-        </template>
-      </y-alert>
-      <y-button 
-        type="zoom"
-        @click="openAlert4"
-      > OPEN ALERT</y-button>
-    </div>
 
     <!--dialog-->
     <div class="title">
       dialog
     </div>
     <div class="dialog">
-      <y-button type="zoom" @click="openDialog1">Show Dialog</y-button>
+      <y-button type="zoom" @click="openDialog1">Open Dialog with Footer</y-button>
       <y-dialog ref="mydialog1" width="50%" margin-top="10px" :visible="visible" @close="close">
         <div>这是一段提示信息</div>
         <template v-slot:footer>
@@ -251,7 +170,7 @@
 
     <!-- drawer demo -->
     <div class="title">drawer</div>
-    <y-button @click="drawer_demo" type="zoom">Open Drawer</y-button>
+    <y-button @click="drawer_demo2" type="zoom">Open Drawer</y-button>
     <y-drawer :state="drawer_open_state" @change="drawer_demo" position="right" title="Demo">
       <div class="drawer_demo">
         demo
@@ -267,19 +186,74 @@
       </div>
     </y-drawer>
 
+    <div class="Calendar">
+      <y-calendar @getChooseDate="getChooseDate" :dateValue="date">
+        <!-- 自定义日历title -->
+        <template #calendarTitle> </template>
+        <!-- 自定义渲染丽日头部 -->
+        <template #calendarTop> </template>
+        <!-- 自定义渲染日期 -->
+        <template #day> </template>
+        <!-- 之定义当前周显示 -->
+        <template #weeks> </template>
+        <!-- 自定义日期底部标注 -->
+        <template #haveDataTag> </template>
+      </y-calendar>
+    </div>
+
+    <!--message-->
     <div class="title">
-       MESSAGE
+      message
     </div>
-    <div class="dialog">
-      <y-button  @click="openMessage">Show Message</y-button>
-      <y-message ref="mydmessage1" width="50%" margin-top="10px" :visible="visible" @close="close">
-        <div>这是一段提示信息</div>
-      </y-message>
+    <div class="message">
+      <y-button type="simple" @click="newsOpenMeth">Success message</y-button>
+    </div>
+    <div class="message">
+      <y-button type="neon" @click="newsOpenMeth1">Error message</y-button>
+    </div>
+    <div class="message">
+      <y-button type="glare" @click="newsOpenMeth2">Warning message</y-button>
+    </div>
+    <div class="message">
+      <y-button type="zoom" @click="newsOpenMeth3">Info message</y-button>
     </div>
 
+    <!--warning-->
+    <div class="title">
+      alert
+    </div>
+    <div class="alert">
+      <y-button type="simple" @click="warningOpenMeth">General prompt</y-button>
+    </div>
+    <div class="alert">
+      <y-button type="neon" @click="warningOpenMeth1">Success prompt</y-button>
+    </div>
+    <div class="alert">
+      <y-button type="glare" @click="warningOpenMeth2">Error prompt</y-button>
+    </div>
+    <div class="alert">
+      <y-button type="zoom" @click="warningOpenMeth3">Open Alert</y-button>
+    </div>
 
+    <div class="title">
+      notification
+    </div>
+    <div class="alert">
+      <y-button type="simple" @click="notifyOpenMeth">General notification</y-button>
+    </div>
+    <div class="alert">
+      <y-button type="neon" @click="notifyOpenMeth1">Success notification</y-button>
+    </div>
+    <div class="alert">
+      <y-button type="glare" @click="notifyOpenMeth2">Error notification</y-button>
+    </div>
+    <div class="alert">
+      <y-button type="zoom" @click="notifyOpenMeth3">Warning notification</y-button>
+    </div>
 
   </div>
+
+  
 </template>
 
 <script>
@@ -301,26 +275,16 @@ export default {
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4404907.jpg?max_age=2592000",
         "https://y.qq.com/music/common/upload/MUSIC_FOCUS/4400772.png?max_age=2592000"
       ],
-      visible:false,
+      //visible:false,
       drawer_open_state: false,
-      drawer_open_state2: false
+      drawer_open_state2: false,
+      value: "",
+      date: "" //选择的日期
     };
   },
   methods: {
     tips() {
       alert("demo");
-    },
-    openAlert(){
-      this.$refs.myAlert.operateAlert(true)
-    },
-    openAlert2(){
-      this.$refs.myAlert2.operateAlert(true)
-    },
-    openAlert3(){
-      this.$refs.myAlert3.operateAlert(true)
-    },
-    openAlert4(){
-      this.$refs.myAlert4.operateAlert(true)
     },
     close(){
       this.$refs.mydialog1.visible = false
@@ -339,7 +303,98 @@ export default {
     },
     openDialog2(){
       this.$refs.mydialog2.visible = true
-    }
+    },
+    change(e) {
+      // 修改value
+      this.value = e;
+    },
+    getChooseDate(date) {
+      this.date = date;
+    },
+   
+    newsOpenMeth(){
+      this.$message.success({
+        title:'Hello world',
+        center:true,
+      })
+    },
+    newsOpenMeth1(){
+      this.$message.error({
+        title:'Hello world',
+        center:true,
+      })
+    },
+    newsOpenMeth2(){
+      this.$message.warning({
+        title:'Hello world',
+        center:true,
+      })
+    },
+    newsOpenMeth3(){
+      this.$message.info({
+        title:'Hello world',
+        center:true,
+      })
+    },
+
+    warningOpenMeth(){
+      this.$alert.simple({
+        header:'General prompt',
+        content:'Hello world',
+        btnText:'confirm'
+      })
+    },
+     warningOpenMeth1(){
+      this.$alert.neon({
+        header:'Success prompt',
+        content:'Hello world',
+        btnText:'confirm'
+      })
+    },
+     warningOpenMeth2(){
+      this.$alert.glare({
+        header:'Error prompt',
+        content:'Hello world',
+        btnText:'confirm'
+      })
+    },
+     warningOpenMeth3(){
+      this.$alert.zoom({
+        header:'alert',
+        content:'Hello world',
+        btnText:'confirm'
+      })
+    },
+
+    notifyOpenMeth(){
+      this.$notify.simple({
+        title:'普通消息',
+        content:'这是一条普通消息'
+      })
+    },
+     notifyOpenMeth1(){
+      this.$notify.success({
+        title:'成功消息',
+        content:'这是一条成功消息'
+      })
+    },
+     notifyOpenMeth2(){
+      this.$notify.error({
+        title:'错误消息',
+        content:'这是一条错误消息'
+      })
+    },
+     notifyOpenMeth3(){
+      this.$notify.warning({
+        title:'警告消息',
+        content:'这是一条警告消息'
+      })
+    },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.value = "111";
+    }, 4000)
   }
 };
 </script>
@@ -347,6 +402,7 @@ export default {
 <style lang="scss">
 #app {
   margin-bottom: 100px;
+  padding-bottom: 300px;
 }
 .title {
   color: gray;
@@ -360,16 +416,21 @@ export default {
   width: 900px;
   height: 220px;
 }
+
 y-radio {
   font-family: "楷体";
   font-size: 40px;
   font-weight: bold;
 }
-.alert,.dialog{
+
+.alert,.dialog,.message,.notice{
   margin: 10px;
 }
 
 .drawer_demo {
   margin: 20px 10px;
+}
+.Calendar {
+  margin-top: 20px;
 }
 </style>

@@ -1,16 +1,17 @@
 <template>
   <transition name="alert-fade">
-    <div :class="['y-alert', `alert-${type}`]" v-show="visible" :style="{ width, marginTop: top }">
+    <div class='y-alert' :class="[computedClass]" v-if="visible" :style="{ width, marginTop: top }">
       <div class="inner">
         <header>
-          <h1><slot name="header"></slot></h1>
+          <h1>{{ header }}</h1>
         </header>
         <div class="content">
-          <p><slot name="content"></slot></p>
+          <p>{{ content }}</p>
+
           <div>
             <y-button @click="operateAlert(false)" :type="type"
-              ><slot name="btnText"></slot
-            ></y-button>
+              >{{btnText}}
+            </y-button>
           </div>
         </div>
       </div>
@@ -19,17 +20,17 @@
 </template>
 
 <script>
-const typeMap = ["simple", "neon", "glare", "zoom"];
 
 export default {
-  name: "YAlert",
   props: {
     type: {
       type: String,
       default: "simple",
       validator(value) {
-        return typeMap.includes(value);
+        return ["simple", "neon", "glare", "zoom"].includes(value) !== -1
       },
+    },
+      /*
       width: {
         type: String,
         default: "50%",
@@ -38,7 +39,21 @@ export default {
         type: String,
         default: "15vh",
       },
-    },
+      */
+      
+     header: {
+        type: String,
+        dafault: "",
+      },
+      content: {
+        type: String,
+        dafault: "",
+      },
+      btnText: {
+        type: String,
+        dafault: "",
+      },
+    
   },
   data() {
     return {
@@ -53,6 +68,16 @@ export default {
       this.visible = isShow;
     },
   },
+  mounted() {
+    console.log(this.content)
+  },
+  computed:{
+    computedClass() {
+      return {
+        [`y-alert-${this.type}`]: this.type
+      };
+  }
+  }
 };
 </script>
 
@@ -63,7 +88,9 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.338);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
 
   .inner {
     position: absolute;
@@ -97,45 +124,45 @@ export default {
       }
     }
   }
-
-  &.alert-simple {
-    header {
-      background-color: rgb(121, 121, 183);
-      color: #fff;
-    }
-  }
-
-  &.alert-neon {
-    header {
-      background-color: orangered;
-      color: #fff;
-    }
-  }
-
-  &.alert-glare {
-    header {
-      background-color: rgb(148, 68, 68);
-      color: #fff;
-    }
-  }
-
-  &.alert-zoom {
-    header {
-      background-color: rgb(132, 85, 234);
-      color: #fff;
-    }
-  }
 }
 
+.y-alert-simple {
+    header {
+      background: linear-gradient(to bottom right, rgb(86, 149, 220), #4155a8);
+      color: #fff;
+    }
+  }
+
+  .y-alert-neon {
+    header {
+      background: linear-gradient(to bottom right, rgb(199, 121, 62), #f36071);
+      color: #fff;
+    }
+  }
+
+  .y-alert-glare {
+    header {
+      background: linear-gradient(to bottom right, rgb(185, 153, 10), #f36071);
+      color: #fff;
+    }
+  }
+
+  .y-alert-zoom {
+    header {
+      background: linear-gradient(to bottom right, rgb(44, 21, 111), #cbcfea);
+      color: #fff;
+    }
+  }
+
 .alert-fade-enter-active {
-  animation: fade 0.3s;
+  animation: fade1 0.3s;
 }
 
 .alert-fade-leave-acive {
-  animation: fade 0.3s reverse;
+  animation: fade1 0.3s reverse;
 }
 
-@keyframes fade {
+@keyframes fade1 {
   0% {
     opacity: 0;
     transform: translateY(-20px);

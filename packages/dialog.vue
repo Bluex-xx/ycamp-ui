@@ -16,7 +16,7 @@
         <div class="y-dialog__footer" v-if="$slots.footer">
           <slot name="footer"></slot>
         </div>
-      </div>
+      </div> 
     </div>
   </transition>
 </template>
@@ -60,7 +60,8 @@ export default {
   overflow: auto;
   margin: 0;
   z-index: 2000;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.338);
+  backdrop-filter: blur(10px);
 
   .y-dialog {
     position: relative;
