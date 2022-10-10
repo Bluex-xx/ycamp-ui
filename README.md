@@ -166,3 +166,58 @@ Vue.component('FontAwesomeIcon', FontAwesomeIcon)
 | -      | drawer的内容     |
 | footer | drawer底部的内容 |
 
+
+
+### 对话框（dialog）
+
+| 属性  | 值     | 描述         |
+| ----- | ------ | ------------ |
+| title | String | 对话框的标题 |
+| width | String | 对话框的宽度 |
+| top   | String | 对话框的位置 |
+
+####  Dialog Slot 
+
+| name   | 描述             |
+| ------ | ---------------- |
+| title  | dialog的内容     |
+| footer | dialog底部的内容 |
+
+
+
+### 消息提示 (Message)
+
+Message 组件提供消息提示功能，使用`$message`方法，在最简单的情况下，可以设置`title`字段，用于设置消息提示的标题。
+
+| 属性   | 值      | 描述                                                         |
+| ------ | ------- | ------------------------------------------------------------ |
+| title  | String  | 消息提示的文字                                               |
+| center | Boolean | 消息提示文字是否居中                                         |
+| time   | Number  | 消息提示持续时长                                             |
+| type   | String  | 消息提示类型，可选值为success，error,info,warning，默认为success |
+
+
+
+### 警告 (Alert)
+
+Alert 组件提供警告提示功能，使用`$alert`方法，在最简单的情况下，可以设置`header`字段、`content`字段和`btnText`字段，用于设置警告的标题、正文内容和按钮文字。
+
+| 属性    | 值     | 描述                                                        |
+| ------- | ------ | ----------------------------------------------------------- |
+| header  | String | 警告的标题                                                  |
+| content | String | 警告的正文内容                                              |
+| btnText | String | 警告按钮文字                                                |
+| type    | String | 警告类型，可选值为simple，neon,glare,zoom，默认为simple |
+
+
+
+### 通知 (Notification)
+
+Notification 组件提供通知功能，使用`$notify`方法，接收一个`options`字面量参数，在最简单的情况下，可以设置`title`字段和`content`字段，用于设置通知的标题和正文。
+
+| 属性    | 值     | 描述                                                         |
+| ------- | ------ | ------------------------------------------------------------ |
+| title   | String | 通知的标题                                                   |
+| content | String | 通知的正文内容                                               |
+| type    | String | 通知类型，可选值为success，error,info,warning，默认为success |
+
